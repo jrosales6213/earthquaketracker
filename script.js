@@ -55,3 +55,6 @@ async function fetchAsync () {
     
     
   }
+ 
+
+  //// Google maps
