@@ -1,118 +1,57 @@
 
-const eartquakeList = document.getElementById("earthquake-list");
-
 const url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
 
 async function fetchAsync () {
-    // await response of fetch call
     let response = await fetch(url);
-    // only proceed once promise is resolved
     let data = await response.json();
-    // only proceed once second promise is resolved
     return data;
   }
-  
-  // trigger async function
-  // log response or catch error of fetch promise
+
   fetchAsync()
-      .then(data => {
-          let features = data.features.map(f => f.properties);
-          return features;
-      })
-      .then(features => {
-          let earthquakes = features.map(a => a.place);
+      .then(data => topThreeCard(data.features));
 
-          let earthquakeData = features.map(a => {
-              let date = new Date(a.time);
-           return date;
-          });
-        
-        //   console.log(earthquakeData)
+   function topThreeCard(earthquake){
+     const features = earthquake.map(e => e.properties);
+     const magnitudeGreater = features.filter(m => m.mag >= 2.5);
 
-    //       let convertToDate = function(string){
-    //           for (let i =0 ; i < string.length; i++){
-    //               let whatIsThat = new Date (string[i]);
-                
-                  
-    //           }
-    //         //   let newStuff = new Date(string);
-    //         //   console.log(newStuff)
-    //           return;
-    //       }
-        
-    //    convertToDate(earthquakeData);
+     // contains lastest 5 earthquakes that were greater than 2.5
+     const recentReports = [];
+     for(let i =0; i<=4; i++){
+       recentReports.push(magnitudeGreater[i]);
+     }
   
-          // convert ISO date into 'real' date
-        //   let earthquakeTime = earthquakeData;
-        //   console.log(earthquakeTime)
-        
-     
-            //  let coolNewDate = new Date (earthquakeTime[i]);
-            //  console.log(coolNewDate)
-            let recentEarthQuake =   `
-               <ul>
-              <li>${earthquakeData[0] +" "+ earthquakes[0]}</li>
-              <li>${earthquakes[1]}</li>
-              <li>${earthquakes[2]}</li>
-              <li>${earthquakes[3]}</li>
-              <li>${earthquakes[4]}</li>
-         
-              
-               </ul>
-             `
-          eartquakeList.innerHTML = recentEarthQuake;
-      
-        //   for (let i=0; i < 5; i++){
-        //       let newDate = earthquakeTime[i];
-        //       let date = new Date(newDate)
-        //   }
-        //   let date = new Date(earthquakeData);
-        //   console.log(date);
-         
-        //   let recentEarthQuake =   `
-        //        <ul>
-        //       <li>${earthquakes[0]}</li>
-        //       <li>${earthquakes[1]}</li>
-        //       <li>${earthquakes[2]}</li>
-        //       <li>${earthquakes[3]}</li>
-        //       <li>${earthquakes[4]}</li>
-        //       <li>${earthquakeTime[0]}</li>
-              
-        //        </ul>
-        //      `
-        //   eartquakeList.innerHTML = recentEarthQuake;
-          }
-      
-      )
- 
-      
-// eartquakeList.innerHTML = 
-//     `
-//     <ul>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     <li>Location</li>
-//     </ul>
-//     `
+  const listItem = document.getElementById("earthquakeList");
 
-    // function show(data) {
-    //     // Loop to access all rows 
-    //     for (let r of data) {
-    //         let tab = 
-    //     `<ul> 
-    //     <td>${r[1]} </td>
-    //     <td>${r[2]} </td>
-    //     <td>${r[3]} </td>
-    //     <td>${r[4]} </td>
-    //     <td>${r[5]} </td>      
-    //     </ul>`;
-        
-    //     }
-    //     // Setting innerHTML as tab variable
-    //     eartquakeList.innerHTML = tab;
-    //     }
+    recentReports.forEach((result, idx) => {
+      const checkDate = new Date(result.time);
+      const passingTime = timeSince(checkDate);
+
+      const content = `
+                   <a href="${result.url}" target="_blank" class=" list-group-item list-group-item-action flex-column align-items-start ">
+                   <div class="d-flex w-100 justify-content-between">
+                   <h5 class="mb-1">${result.title}</h5>
+                   </div>
+                   <p class="mb-1">${passingTime}</p>
+                   </a>
+                   `;
+     listItem.innerHTML += content;
+    })
+  }
+  // used to find out how much time has passed since event. 
+  const intervals = [
+    { label: 'year', seconds: 31536000 },
+    { label: 'month', seconds: 2592000 },
+    { label: 'day', seconds: 86400 },
+    { label: 'hour', seconds: 3600 },
+    { label: 'minute', seconds: 60 },
+    { label: 'second', seconds: 1 }
+  ];
+  
+  function timeSince(date) {
+    const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+    const interval = intervals.find(i => i.seconds < seconds);
+    const count = Math.floor(seconds / interval.seconds);
+    return `${count} ${interval.label}${count !== 1 ? 's' : ''} ago`;
+    
+    
+  }
