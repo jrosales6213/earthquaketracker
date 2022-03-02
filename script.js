@@ -11,6 +11,7 @@ async function fetchAsync () {
       .then(data => {
         topThreeCard(data.features);
         tableData(data.features);
+        
       });
 
    function topThreeCard(earthquake){
@@ -43,13 +44,10 @@ async function fetchAsync () {
 
   // table render all recent earthquakes
 
- 
-
-
   function tableData(data) {
     const allProperties = data.map(a => a.properties);
-    const tryFunction = convertToDate(allProperties);
-    console.log(tryFunction)
+   
+
         let tab = 
           `<thead>
           <tr>
@@ -63,11 +61,13 @@ async function fetchAsync () {
       
         // Loop to access all rows 
          for (let r of allProperties) {
+           let convertTime = new Date(r.time);
+           console.log(convertTime);
            tab += `
            <tbody>
         <tr> 
          <td>${r.place} </td>
-         <td>${tryFunction} </td>
+         <td>${convertTime}</td>
          <td>${r.mag} </td> 
          </tr>
          </tbody>`;
@@ -76,14 +76,8 @@ async function fetchAsync () {
         document.getElementById("table-container").innerHTML = tab;
         }
  // convert to current date
-  function convertToDate(dateList){
-  const testingAgain =  dateList.forEach((result) => {
-     let what =  new Date(result.time).toDateString();
-     console.log(what)
-   })
-  
-  console.log(testingAgain);
-  }
+
+ 
   // used to find out how much time has passed since event. 
   const intervals = [
     { label: 'year', seconds: 31536000 },
