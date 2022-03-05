@@ -4,44 +4,104 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e1404191a4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <script src="./index.js"></script>
-    <title>Document</title>
+    <script src="./js/map.js"></script>
+    <title>EarthQuake Viewer</title>
 </head>
 <body>
-    <h1 class="text-center p-4">Search EarthQuakes</h1>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <i class="fa fas fa-globe fa-3x pr-3"></i>
+        <h1 class="navbar-brand mb-0 h1 navbar-title">EarthQuake Viewer</h1>
+      </nav>
+
+  <div class="row">
+
+    <!-- 7 DAY HIGHEST MAGNITUDE -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div id="earnings" class="col mr-2">
+                        <!-- content -->
+                    </div>
+                    <div class="col-auto">
+                    </div><i class="fa fas fa-chart-line fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 DAY HIGHEST LOCATION -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div id="location" class="col mr-2">
+                     <!-- content -->
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-solid fa-map-pin fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+
 <div class="row">
-  <div class="col-sm-4">
-    <div id="earthquakeList" class="list-group">
-      <h3 class="text-center">Latest EarthQuakes</h3>
-      <p class="h6 text-center">Magnitude 2.5 and greater</p> 
-      <!-- content list -->
-   </div>
-  </div>
-  <div class="col container"> 
-    <h3 class="text-center p-3">All Recent Earthquakes</h3>
-    <div  style="height: 500px; overflow: scroll">
-    <table id="table-container" class="table  table-bordered table-sm" cellspacing="0"
-  width="100%">
-  <!-- table content -->
-    </table>
 
-</table> 
-</div>
-  </div>
+    <!--Recent Earthquake Card -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold">All Weekly EarthQuakes</h6>
+            </div>
+            <div class="card-body" >
+                <table class="display table table-bordered " id="table-container" width="100%" cellspacing="0" style="height: 500px; overflow: auto;">
+                 <!-- Table Content -->
+                </table>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold">Recent EarthQuakes</h6>
+                <p class="m-0">Magnitude 2.5 or Greater</p>
+            </div>
+             <div class="card-body" id="earthquakeList"> 
+                 <!-- List content -->
+            </div>
+        </div>
+    </div>
 </div>
-<h3 class="p-3 text-center">Map of recent Earthquakes</h3>
+
+<div class="card-header py-3 d-flex flex-row align-items-center ">
+    <h6 class="m-0 font-weight-bold">EarthQuake World Map</h6>
+</div>
+
+<!-- Google Map -->
 <div id="map"></div>
-<footer>
-  <h6 class="text-center">Created by <a href="https://github.com/jrosales6213">Jesus Rosales</a></h6>
+
+<footer class="p-3">
+  <h6 class="text-center">Created by <a href="https://github.com/jrosales6213" target="_blank" >Jesus Rosales</a></h6>
 </footer>
-<script src="./script.js"></script>
+
+<script src="./js/index.js"></script>
 <!-- google maps -->
 <script
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyWGN0EjXXKcU8FMK6fwWXfH1sVS-r8zE&callback=initMap&v=weekly"
 async
 ></script>
+
+
 </body>
 </html>

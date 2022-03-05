@@ -12,32 +12,27 @@
     height: 100%;
     margin: 10px;
     padding: 0;
+ 
+  }
+  .navbar-title {
+      font-size: 2rem;
+      font-weight:500;
+      
+  }
+  .fa-globe {
+      color: #1d4226
   }
  
-  table {
+table {
     display: flex;
     flex-flow: column;
-    width: 100%;
+    width: 100%;  
 }
-
-thead {
-    flex: 0 0 auto;
-}
-
-tbody {
-    flex: 1 1 auto;
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
 tr {
     width: 100%;
     display: table;
     table-layout: fixed;
 }
 
-
-
  
-  
+
