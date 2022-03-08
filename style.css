@@ -19,10 +19,15 @@
       font-size: 2rem;  
   }
   .fa-globe-americas {
-      color:#2163ad;
+      color: whitesmoke;
 
   }
- 
+  .fa-map-marked-alt {
+    color: whitesmoke;
+  }
+  .fa-chart-line {
+    color: whitesmoke;
+  }
 table {
     display: flex;
     flex-flow: column;
@@ -37,6 +42,6 @@ tr {
  
 @media only screen and (max-width: 500px) {
     .navbar-title {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
     }
   }

@@ -30,11 +30,11 @@ const findGreatest = findNumber.map(a => a.mag);
  const location = findLocation.map(a => a.place);
 
  document.getElementById("earnings").innerHTML = ` 
-                                                  <div class="text-xs font-weight-bold  text-uppercase mb-1 "> 7 Day Highest Magnitude</div>
-                                                   <div class="h5 mb-0 font-weight-bold text-info">${greatest} Magnitude</div>`;
+                                                  <div class="text-xs font-weight-bold  text-uppercase mb-1 text-info "> 7 Day Highest Magnitude</div>
+                                                   <div class="h5 mb-0 font-weight-bold  text-light">${greatest} Magnitude</div>`;
  document.getElementById("location").innerHTML = `
-                                                  <div class="text-xs font-weight-bold  text-uppercase mb-1 "> 7 Day Highest Location</div>
-                                                  <div class="h5 mb-0 font-weight-bold text-info">${location}</div>`;
+                                                  <div class="text-xs font-weight-bold  text-uppercase mb-1 text-info"> 7 Day Highest Location</div>
+                                                  <div class="h5 mb-0 font-weight-bold text-light">${location}</div>`;
 }      
 
 
