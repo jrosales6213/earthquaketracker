@@ -31,10 +31,10 @@ const findGreatest = findNumber.map(a => a.mag);
 
  document.getElementById("earnings").innerHTML = ` 
                                                   <div class="text-xs font-weight-bold  text-uppercase mb-1 "> 7 Day Highest Magnitude</div>
-                                                   <div class="h5 mb-0 font-weight-bold text-danger">${greatest} Magnitude</div>`;
+                                                   <div class="h5 mb-0 font-weight-bold text-info">${greatest} Magnitude</div>`;
  document.getElementById("location").innerHTML = `
                                                   <div class="text-xs font-weight-bold  text-uppercase mb-1 "> 7 Day Highest Location</div>
-                                                  <div class="h5 mb-0 font-weight-bold text-danger">${location}</div>`;
+                                                  <div class="h5 mb-0 font-weight-bold text-info">${location}</div>`;
 }      
 
 
